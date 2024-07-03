@@ -1,0 +1,62 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "GCC Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\GCCDebug\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Включить автоматическое форматирование для gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "GCC_Debug"
+        },
+        {
+            "name": "GCC Release",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${fileDirname}${config:GCCReleaseDir}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "preLaunchTask": "GCC_Release"
+        },
+        {
+            "name": "VC Release",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${fileDirname}${config:VCReleaseDir}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "externalTerminal",
+            "preLaunchTask": "VC_Release"
+        },
+        {
+            "name": "VC Debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${fileDirname}${config:VCDebugDir}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "externalTerminal",
+            "preLaunchTask": "VC_Debug"
+        }
+    ]
+}

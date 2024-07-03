@@ -1,0 +1,22 @@
+{
+    // Just folders names:
+    "GCCDebugDri": "\\GCCDebug",
+    "GCCReleaseDir": "\\GCCRelease",
+    "VCDebugDir": "\\VCDebug",
+    "VCReleaseDir": "\\VCRelease",
+
+    // For Visual Studio Compiler
+    "VSCompileRelease": "cl.exe",
+    "VSCompileDebug": "cl.exe /Zi /EHsc %files% /link /out:program.exe",
+
+    "files.associations":{
+        "cmath": "cpp",
+        "concepts": "cpp",
+        "cstddef": "cpp",
+        "cstdint": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cstding": "cpp",
+        "ctime": "cpp"
+    }
+}

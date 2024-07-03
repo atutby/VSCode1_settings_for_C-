@@ -1,0 +1,152 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "GCCDebug",
+			"command": "C:\\mingw64\\bin\\g++.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"${workspaceFolder}\\*.cpp",
+				"-o",
+				"${fileDirname}\\GCCDebug\\${fileBasenameNoExtension}.exe"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: C:\\mingw64\\bin\\g++.exe"
+		},
+		{
+			"type": "shell",
+			"label": "GCCRelease",
+			"command": "C:\\mingw64\\bin\\g++.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-O3",
+				"${workspaceFolder}\\*.cpp",
+				"-o",
+				"${fileDirname}${config:GCCReleaseDir}\\${fileBasenameNoExtension}.exe"
+			],
+			"options": {
+				// "cwd": "${fileDirname}"
+				"cwd": "C:\\mingw64\\bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: C:\\mingw64\\bin\\g++.exe"
+		},
+		//----------------------------------------------------------------------
+		{	// Creating directory for GCC Release build files
+			"label": "DirGCCRelease",
+			"type": "shell",
+			"windows": {
+				"command": "cmd",
+				"args": ["/C", "if not exist ${fileDirname}${config:GCCReleaseDir} mkdir ${fileDirname}${config:GCCReleaseDir}"]
+			}
+		},
+		{	// Creating directory for GCC Debug build files
+			"label": "DirGCCDebug",
+			"type": "shell",
+			"windows": {
+				"command": "cmd",
+				"args": ["/C", "if not exist ${fileDirname}\\GCCDebug mkdir ${fileDirname}\\GCCDebug"]
+			}
+		},
+		// ------------ Tasks for launch.json file ------------------
+		{
+			"label": "GCC_Debug",
+			"dependsOn": [
+				"DirGCCDebug",
+				"GCCDebug"
+			]
+		},
+		{
+			"label": "GCC_Release",
+			"dependsOn":[
+				"DirGCCRelease",
+				"GCCRelease"
+			]
+		},
+		//======================================= VC ==================================================
+		{
+			"type": "shell",
+			"label": "VCDebug",
+			"command": "cl.exe",
+			"args": [
+			  "/Zi",
+			  "/EHsc",
+			  "/Fe:",
+			  "${fileDirname}${config:VCDebugDir}\\${fileBasenameNoExtension}.exe",
+			  "${fileDirname}/*.cpp"
+			],
+			"problemMatcher": ["$msCompile"],
+			"group": "build",
+			"detail": "VCDebug28"
+		},
+		{
+			"type": "shell",
+			"label": "VCRelease",
+			"command": "cl.exe",
+			"args": [
+			  "/O2",
+			  "/Oi",
+			  "/Ot",
+			  "/EHsc",
+			  "/Fe:",
+			  "${fileDirname}${config:VCReleaseDir}\\${fileBasenameNoExtension}.exe",
+			  "${fileDirname}/*.cpp"
+			],
+			"problemMatcher": ["$msCompile"],
+			"options": {
+				"cwd": "${fileDirname}${config:VCReleaseDir}"
+			},
+			"group": "build",
+			"detail": "VCRelease28"
+		},
+		//------------------------------------ 2 ----------------------------------
+		{// Creating directory for VC Release build files
+			"label": "DirVCRelease",
+			"type": "shell",
+			"windows": {
+				"command": "cmd",
+				"args": ["/C", "if not exist ${fileDirname}${config:VCReleaseDir} mkdir ${fileDirname}${config:VCReleaseDir}"]
+			}
+		},
+		{	// Creating directory for GCC Debug build files
+			"label": "DirVCDebug",
+			"type": "shell",
+			"windows": {
+				"command": "cmd",
+				"args": ["/C", "if not exist ${fileDirname}${config:VCDebugDir} mkdir ${fileDirname}${config:VCDebugDir}"]
+			}
+		},
+		// ------------ Tasks for launch.json file 2 ------------------
+		{
+			"label": "VC_Debug",
+			"dependsOn": [
+				"DirVCDebug",
+				"VCDebug"
+			]
+		},
+		{
+			"label": "VC_Release",
+			"dependsOn":[
+				"DirVCRelease",
+				"VCRelease"
+			]
+		},
+	]
+}
